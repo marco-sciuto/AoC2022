@@ -10,7 +10,7 @@ await foreach (var line in lines)
     {
         part1++;
     }
-    if (IsOverlapping(zone1, zone2) || IsIncluded(zone2, zone1))
+    if (IsOverlapping(zone1, zone2) || IsOverlapping(zone2, zone1))
     {
         part2++;
     }
@@ -30,8 +30,7 @@ bool IsIncluded(IEnumerable<int> zoneA, IEnumerable<int> zoneB)
 
 bool IsOverlapping(IEnumerable<int> zoneA, IEnumerable<int> zoneB)
 {
-    return IsContained(zoneA.First(), zoneB) || IsContained(zoneA.First(), zoneB) ||
-        IsContained(zoneB.First(), zoneA) || IsContained(zoneB.First(), zoneA);
+    return IsContained(zoneA.First(), zoneB) || IsContained(zoneA.Last(), zoneB);
 }
 
 bool IsContained(int point, IEnumerable<int> zone)
